@@ -58,16 +58,19 @@ button, input, textarea { font: inherit; }
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
   font-weight: 800;
   color: var(--primary-dark);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
 }
 
 .brand img {
-  width: 76px;
-  height: 76px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
   border-radius: 12px;
+  background: white;
+  border: 2px solid white;
 }
 
 .main-nav {
@@ -211,9 +214,30 @@ button, input, textarea { font: inherit; }
   .video-grid .video-item iframe { height: 340px; }
 }
 
+@media (max-width: 768px) {
+  .brand img { width: 70px; height: 70px; }
+  .brand span { display: none; }
+  .nav-wrap { min-height: 60px; }
+  .main-nav { gap: 0.6rem; font-size: 0.85rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .services-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 640px) {
-  .brand img { width: 44px; height: 44px; }
+  .brand img { width: 56px; height: 56px; }
   .video-grid .video-item iframe { height: 180px; }
+  .nav-wrap { min-height: 55px; padding: 0.5rem 0; }
+  .nav-wrap { flex-wrap: wrap; gap: 0.5rem; }
+  .main-nav { gap: 0.4rem; font-size: 0.75rem; }
+  .button { padding: 0.7rem 1rem; font-size: 0.9rem; }
+  .hero-copy h1 { font-size: 2rem; }
+  .section { padding: 3rem 0; }
+  .metrics-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+  .metric { padding: 1rem; }
+  .about-layout { gap: 1rem; }
+  .contact-grid { gap: 1rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .donate-panel { padding: 1.5rem; flex-direction: column; }
 }
 
 /* grid for multiple videos */
@@ -603,16 +627,19 @@ button, input, textarea { font: inherit; }
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .hero-media { min-height: 300px; }
+  .hero-media img { min-height: 300px; }
 }
 
 @media (max-width: 640px) {
   .section {
-    padding: 4rem 0;
+    padding: 3rem 0;
   }
 
   .main-nav {
-    gap: 0.8rem;
-    font-size: 0.92rem;
+    gap: 0.4rem;
+    font-size: 0.75rem;
   }
 
   .metrics-grid {
@@ -620,10 +647,24 @@ button, input, textarea { font: inherit; }
   }
 
   .hero-copy h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .hero-media img {
-    min-height: 320px;
+    min-height: 300px;
+  }
+
+  .button {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-wrap {
+    min-height: 50px;
+    flex-wrap: wrap;
+  }
+
+  .donate-panel {
+    padding: 1.5rem;
   }
 }
