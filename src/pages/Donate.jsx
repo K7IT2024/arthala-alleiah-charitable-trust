@@ -46,6 +46,35 @@ export default function Donate(){
               @ARTHALAALLEIAHCHARITABLETRUST
             </p>
           </div>
+
+          <div style={{ marginTop: '26px' }}>
+            <h4>Where Your Donation Helps</h4>
+            <ul className="feature-list" style={{ marginTop: 8 }}>
+              <li>Devotional / Temple / Mosque / Church development & maintenance</li>
+              <li>Rural & remote area development and tribal area support</li>
+              <li>Government schools — mineral water & basic facilities</li>
+              <li>Emergency support for poor, orphans, and crisis situations</li>
+              <li>Education & vocational training (Free Java Full-Stack training via K7infoTech since 2013)</li>
+            </ul>
+
+            <p style={{ marginTop: 12, color: 'var(--muted)' }}>
+              We provide skill training in partnership with K7infoTech; each batch typically graduates at least two students free of charge.
+            </p>
+
+            <h4 style={{ marginTop: 18 }}>Tax Benefits & Certificates</h4>
+            <p style={{ color: 'var(--muted)' }}>
+              Donations are eligible for tax benefits under 80G and 12A. Click to view/download our certificates and trust registration:
+            </p>
+            <ul style={{ marginTop: 8 }}>
+              <li><a href="/docs/AAMTA2662GF20261_80g.pdf" target="_blank" rel="noreferrer">Download 80G Certificate (AAMTA2662GF20261)</a></li>
+              <li><a href="/docs/AAMTA2662GE20251_12a.pdf" target="_blank" rel="noreferrer">Download 12A Certificate (AAMTA2662GE20251)</a></li>
+              <li><a href="/docs/ARTHALA_ALLEIAH_CHARITABLE_TRUST.pdf" target="_blank" rel="noreferrer">Trust Registration/Details</a></li>
+            </ul>
+
+            <p style={{ marginTop: 14, color: 'var(--muted)' }}>
+              For corporate CSR support or detailed banking details for verified donors, please contact us via the Contact page.
+            </p>
+          </div>
         </div>
       </div>
     </section>
