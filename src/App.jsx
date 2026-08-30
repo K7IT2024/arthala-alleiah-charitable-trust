@@ -18,15 +18,30 @@ const getPageFromHash = () => {
 export default function App(){
   const [page, setPage] = useState(getPageFromHash);
 
+  const navigateToPage = (nextPage) => {
+    const target = nextPage || 'home';
+    setPage(target);
+    const hash = target === 'home' ? '' : `#${target}`;
+    const nextUrl = `${window.location.pathname}${window.location.search}${hash}`;
+    window.history.pushState(null, '', nextUrl);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
+
   useEffect(() => {
     const onHashChange = () => {
-      setPage(getPageFromHash());
+      const nextPage = getPageFromHash();
+      setPage(nextPage);
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     };
 
     window.addEventListener('hashchange', onHashChange);
+    window.addEventListener('popstate', onHashChange);
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    return () => window.removeEventListener('hashchange', onHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', onHashChange);
+      window.removeEventListener('popstate', onHashChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -43,15 +58,15 @@ export default function App(){
       case 'volunteer': return <Volunteer />;
       case 'contact': return <Contact />;
       case 'home':
-      default: return <Home />;
+      default: return <Home onNavigate={navigateToPage} />;
     }
   };
 
   return (
     <div className="app-root">
-      <Navbar currentPage={page} />
+      <Navbar currentPage={page} onNavigate={navigateToPage} />
       <main>{renderPage()}</main>
-      <Footer />
+      <Footer onNavigate={navigateToPage} />
     </div>
   );
 }

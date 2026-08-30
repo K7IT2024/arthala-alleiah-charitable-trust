@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function Footer(){
+export default function Footer({ onNavigate }){
+  const handleNavigate = (target) => (event) => {
+    event.preventDefault();
+    if (onNavigate) onNavigate(target);
+  };
+
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -12,10 +17,10 @@ export default function Footer(){
         <div>
           <h5>Quick links</h5>
           <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Programs</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" onClick={handleNavigate('about')}>About</a></li>
+            <li><a href="#services" onClick={handleNavigate('services')}>Programs</a></li>
+            <li><a href="#events" onClick={handleNavigate('events')}>Events</a></li>
+            <li><a href="#contact" onClick={handleNavigate('contact')}>Contact</a></li>
           </ul>
         </div>
 

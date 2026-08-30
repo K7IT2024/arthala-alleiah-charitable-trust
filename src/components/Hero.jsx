@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Hero(){
+export default function Hero({ onNavigate }){
   return (
     <section className="hero" id="home">
       <div className="container hero-inner">
@@ -12,8 +12,8 @@ export default function Hero(){
           </p>
 
           <div className="hero-actions">
-            <a href="#donate" className="button">Donate Now</a>
-            <a href="#contact" className="button secondary">Volunteer</a>
+            <a href="#donate" className="button" onClick={(event) => { event.preventDefault(); if (onNavigate) onNavigate('donate'); }}>Donate Now</a>
+            <a href="#contact" className="button secondary" onClick={(event) => { event.preventDefault(); if (onNavigate) onNavigate('contact'); }}>Volunteer</a>
           </div>
 
           <ul className="quick-facts">

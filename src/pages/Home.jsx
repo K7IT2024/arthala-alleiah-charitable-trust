@@ -6,10 +6,10 @@ import services from '../data/services';
 import YouTubeEmbed from '../components/YouTubeEmbed';
 import media from '../data/media';
 
-export default function Home(){
+export default function Home({ onNavigate }){
   return (
     <>
-      <Hero />
+      <Hero onNavigate={onNavigate} />
 
       <section className="section" id="impact">
         <div className="container">
@@ -76,7 +76,7 @@ export default function Home(){
               Your contributions help us provide meals, scholarships, medical camps, and support for children and elders across our community.
             </p>
           </div>
-          <a href="#donate" className="button" onClick={(e) => { e.preventDefault(); window.location.hash = '#donate'; window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 50); }}>Become a donor</a>
+          <a href="#donate" className="button" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('donate'); }}>Become a donor</a>
         </div>
       </section>
     </>
