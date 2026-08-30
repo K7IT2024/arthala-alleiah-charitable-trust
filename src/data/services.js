@@ -2,8 +2,8 @@ const services = [
   {
     id: 'annaprasadam',
     title: 'AnnaPrasadam',
-    description: 'Weekly community meals and festival food drives to feed those in need.',
-    img: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80'
+    description: 'Weekly community meals and festival food drives to feed those in need and strengthen community care.',
+    img: '/images/hero.jpg'
   },
   {
     id: 'education',
@@ -14,8 +14,8 @@ const services = [
   {
     id: 'blood',
     title: 'Blood Donation',
-    description: 'Organizing blood donation camps in partnership with local hospitals to save lives.',
-    img: 'https://images.unsplash.com/photo-1538108149393-fbbd81895973?auto=format&fit=crop&w=900&q=80'
+    description: 'Organizing blood donation camps in partnership with local hospitals to save lives during emergencies.',
+    img: '/images/blood-donation.jpg'
   },
   {
     id: 'eye',

@@ -28,9 +28,9 @@ const serviceHighlights = [
     description: 'Collecting and distributing books to schools, libraries, and learners so access to knowledge grows across marginalized communities.'
   },
   {
-    title: 'Village Development',
+    title: 'Rural Development',
     img: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=900&q=80',
-    description: 'Community development initiatives focused on clean water access, sanitation, and village upliftment for long-term social impact.'
+    description: 'Rural and remote area development, tribal welfare support, government school mineral water support, and emergency assistance for poor, orphaned, and crisis-affected families.'
   }
 ];
 

@@ -19,10 +19,19 @@ export default function App(){
   const [page, setPage] = useState(getPageFromHash);
 
   useEffect(() => {
-    const onHashChange = () => setPage(getPageFromHash());
+    const onHashChange = () => {
+      setPage(getPageFromHash());
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    };
+
     window.addEventListener('hashchange', onHashChange);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [page]);
 
   const renderPage = () => {
     switch (page) {
