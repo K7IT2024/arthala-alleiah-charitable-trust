@@ -12,8 +12,8 @@ export default function Hero({ onNavigate }){
           </p>
 
           <div className="hero-actions">
-            <a href="#donate" className="button" onClick={(event) => { event.preventDefault(); if (onNavigate) onNavigate('donate'); }}>Donate Now</a>
-            <a href="#contact" className="button secondary" onClick={(event) => { event.preventDefault(); if (onNavigate) onNavigate('contact'); }}>Volunteer</a>
+            <a href="?page=donate" className="button" onClick={(event) => { event.preventDefault(); if (onNavigate) onNavigate('donate'); }}>Donate Now</a>
+            <a href="?page=contact" className="button secondary" onClick={(event) => { event.preventDefault(); if (onNavigate) onNavigate('contact'); }}>Volunteer</a>
           </div>
 
           <ul className="quick-facts">

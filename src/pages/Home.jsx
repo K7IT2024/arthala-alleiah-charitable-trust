@@ -76,7 +76,7 @@ export default function Home({ onNavigate }){
               Your contributions help us provide meals, scholarships, medical camps, and support for children and elders across our community.
             </p>
           </div>
-          <a href="#donate" className="button" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('donate'); }}>Become a donor</a>
+          <a href="?page=donate" className="button" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('donate'); }}>Become a donor</a>
         </div>
       </section>
     </>

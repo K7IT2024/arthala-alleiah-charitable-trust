@@ -48,7 +48,7 @@ export default function Donate(){
           </div>
 
           <div style={{ marginTop: '26px' }}>
-            <h4>Where Your Donation Helps</h4>
+            <h4>Support Areas</h4>
             <ul className="feature-list" style={{ marginTop: 8 }}>
               <li>Devotional / Temple / Mosque / Church development & maintenance</li>
               <li>Rural or remote area development and tribal welfare support</li>
