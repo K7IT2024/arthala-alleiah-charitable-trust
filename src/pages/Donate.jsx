@@ -24,6 +24,28 @@ export default function Donate(){
             <li>In-kind donations</li>
           </ul>
           <p className="donation-note"><strong>Banking details:</strong> Available on request for verified donors and partners.</p>
+          
+          <div style={{ marginTop: '30px', textAlign: 'center' }}>
+            <h4>Connect via UPI/Payment</h4>
+            <p style={{ fontSize: '14px', color: '#666', marginBottom: '15px' }}>
+              Scan the QR code below to contribute via our preferred payment method
+            </p>
+            <img 
+              src="/images/instagram-qr.jpg" 
+              alt="Donation QR Code" 
+              style={{ 
+                maxWidth: '250px', 
+                width: '100%', 
+                border: '2px solid #d4a574',
+                borderRadius: '8px',
+                padding: '10px',
+                backgroundColor: '#fff'
+              }} 
+            />
+            <p style={{ fontSize: '12px', color: '#999', marginTop: '10px' }}>
+              @ARTHALAALLEIAHCHARITABLETRUST
+            </p>
+          </div>
         </div>
       </div>
     </section>
