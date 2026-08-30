@@ -26,15 +26,15 @@ export default function Donate(){
           <p className="donation-note"><strong>Banking details:</strong> Available on request for verified donors and partners.</p>
           
           <div style={{ marginTop: '30px', textAlign: 'center' }}>
-            <h4>Connect via UPI/Payment</h4>
+            <h4>Scan & Pay</h4>
             <p style={{ fontSize: '14px', color: '#666', marginBottom: '15px' }}>
-              Scan the QR code below to contribute via our preferred payment method
+              Scan the QR code below to support our charitable work through UPI / SBI payment methods.
             </p>
             <img 
-              src="/images/instagram-qr.jpg" 
+              src="/images/donation-scanner.jpg" 
               alt="Donation QR Code" 
               style={{ 
-                maxWidth: '250px', 
+                maxWidth: '420px', 
                 width: '100%', 
                 border: '2px solid #d4a574',
                 borderRadius: '8px',
@@ -43,7 +43,7 @@ export default function Donate(){
               }} 
             />
             <p style={{ fontSize: '12px', color: '#999', marginTop: '10px' }}>
-              @ARTHALAALLEIAHCHARITABLETRUST
+              UPI ID: arthalaalleiahcharitabletrust@sbi
             </p>
           </div>
 
@@ -51,8 +51,8 @@ export default function Donate(){
             <h4>Where Your Donation Helps</h4>
             <ul className="feature-list" style={{ marginTop: 8 }}>
               <li>Devotional / Temple / Mosque / Church development & maintenance</li>
-              <li>Rural & remote area development and tribal area support</li>
-              <li>Government schools — mineral water & basic facilities</li>
+              <li>Rural or remote area development and tribal welfare support</li>
+              <li>Government school mineral water support and basic facility improvement</li>
               <li>Emergency support for poor, orphans, and crisis situations</li>
               <li>Education & vocational training (Free Java Full-Stack training via K7infoTech since 2013)</li>
             </ul>

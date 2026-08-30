@@ -8,7 +8,7 @@ const services = [
   {
     id: 'education',
     title: 'Education Support',
-    description: 'Scholarships, tuition support, study kits, and after-school mentoring for children.',
+    description: 'Scholarships, tuition support, study kits, mentoring, and vocational training programs including free Java Full-Stack training via K7infoTech since 2013. We provide skill training for each batch with at least two students graduating free of charge.',
     img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80'
   },
   {
@@ -30,9 +30,9 @@ const services = [
     img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80'
   },
   {
-    id: 'village-dev',
-    title: 'Village Development',
-    description: 'Small infrastructure projects such as clean water supply, sanitation and community wells.',
+    id: 'rural-dev',
+    title: 'Rural & Tribal Development',
+    description: 'Rural or remote area development, tribal welfare support, government school mineral water support, and emergency relief for poor, orphaned, and crisis-affected families.',
     img: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=900&q=80'
   }
 ];

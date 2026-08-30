@@ -3,24 +3,24 @@ import SectionTitle from '../components/SectionTitle';
 
 const eventList = [
   {
-    title: 'Weekly Food Distribution',
-    date: 'Every Saturday',
-    description: 'Community meal service every Saturday providing nutritious meals to families and individuals in need.'
+    title: 'Rural & Remote Area Development',
+    date: 'Ongoing',
+    description: 'Support for rural and tribal communities through welfare outreach, basic facility improvement, and community-centric development initiatives.'
   },
   {
-    title: 'Back-to-School Support',
-    date: 'June & July',
-    description: 'Book kits, uniforms, and educational essentials distributed to students from low-income households.'
+    title: 'Government School Mineral Water Support',
+    date: 'As Needed',
+    description: 'We support government schools with mineral water access and essential amenities so students can study in healthier environments.'
   },
   {
-    title: 'Health Camp & Blood Drive',
-    date: 'Quarterly',
-    description: 'Community wellness sessions including eye screening, blood donation, and health counseling.'
+    title: 'Emergency Relief & Crisis Support',
+    date: 'Responsive',
+    description: 'Emergency support for poor families, orphans, crisis-affected communities, and help during funerals or unexpected hardships.'
   },
   {
-    title: 'Festival Care Initiative',
-    date: 'Festival Seasons',
-    description: 'Special support during major festivals to help families celebrate with dignity and access to essentials.'
+    title: 'Education & Vocational Training',
+    date: 'Year-round',
+    description: 'Education support and free Java Full-Stack training via K7infoTech since 2013. Each batch typically graduates at least two students free of charge.'
   }
 ];
 
