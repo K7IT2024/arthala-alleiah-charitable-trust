@@ -10,38 +10,42 @@ import Donate from './pages/Donate';
 import Volunteer from './pages/Volunteer';
 import Contact from './pages/Contact';
 
-const getPageFromHash = () => {
-  const page = window.location.hash.replace('#', '').trim();
-  return page || 'home';
+const validPages = ['home', 'about', 'services', 'events', 'gallery', 'donate', 'volunteer', 'contact'];
+
+const getPageFromUrl = () => {
+  const params = new URLSearchParams(window.location.search);
+  const page = params.get('page');
+  return validPages.includes(page) ? page : 'home';
 };
 
 export default function App(){
-  const [page, setPage] = useState(getPageFromHash);
+  const [page, setPage] = useState(getPageFromUrl);
 
   const navigateToPage = (nextPage) => {
-    const target = nextPage || 'home';
+    const target = validPages.includes(nextPage) ? nextPage : 'home';
     setPage(target);
-    const hash = target === 'home' ? '' : `#${target}`;
-    const nextUrl = `${window.location.pathname}${window.location.search}${hash}`;
-    window.history.pushState(null, '', nextUrl);
+
+    const url = new URL(window.location.href);
+    if (target === 'home') {
+      url.searchParams.delete('page');
+    } else {
+      url.searchParams.set('page', target);
+    }
+    window.history.pushState({}, '', `${url.pathname}${url.search}`);
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
 
   useEffect(() => {
-    const onHashChange = () => {
-      const nextPage = getPageFromHash();
+    const onUrlChange = () => {
+      const nextPage = getPageFromUrl();
       setPage(nextPage);
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     };
 
-    window.addEventListener('hashchange', onHashChange);
-    window.addEventListener('popstate', onHashChange);
+    window.addEventListener('popstate', onUrlChange);
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 
-    return () => {
-      window.removeEventListener('hashchange', onHashChange);
-      window.removeEventListener('popstate', onHashChange);
-    };
+    return () => window.removeEventListener('popstate', onUrlChange);
   }, []);
 
   useEffect(() => {
