@@ -24,7 +24,7 @@ export default function Hero({ onNavigate }){
         </div>
 
         <div className="hero-media">
-          <img src="/images/hero.jpg" alt="Community support and charity event" />
+          <img src="/images/hero.jpg" alt="Community care and charity support" />
           <div className="hero-card">
             <strong>7+ Years</strong>
             <span>of trusted service</span>

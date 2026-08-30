@@ -3,13 +3,13 @@ const services = [
     id: 'annaprasadam',
     title: 'AnnaPrasadam',
     description: 'Weekly community meals and festival food drives to feed those in need and strengthen community care.',
-    img: '/images/hero.jpg'
+    img: '/images/food-donation.mp4'
   },
   {
     id: 'education',
     title: 'Education Support',
     description: 'Scholarships, tuition support, study kits, mentoring, and vocational training programs including free Java Full-Stack training via K7infoTech since 2013. We provide skill training for each batch with at least two students graduating free of charge.',
-    img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80'
+    img: '/images/education.jpg'
   },
   {
     id: 'blood',

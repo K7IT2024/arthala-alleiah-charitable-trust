@@ -63,7 +63,7 @@ export default function Donate(){
 
             <h4 style={{ marginTop: 18 }}>Tax Benefits & Certificates</h4>
             <p style={{ color: 'var(--muted)' }}>
-              Donations are eligible for tax benefits under 80G and 12A. Click to view/download our certificates and trust registration:
+              Donations are eligible for tax benefits under 80G and 12A. Click to view/download our certificates and trust registration. <strong>Available on request for verification.</strong>
             </p>
             <ul style={{ marginTop: 8 }}>
               <li><a href="/docs/AAMTA2662GF20261_80g.pdf" target="_blank" rel="noreferrer">Download 80G Certificate (AAMTA2662GF20261)</a></li>

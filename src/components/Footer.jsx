@@ -30,8 +30,8 @@ export default function Footer({ onNavigate }){
             <li>info@arthalatrust.org</li>
             <li>+91 89784 83328</li>
             <li>Tirupathi</li>
-            <li><a href="https://www.instagram.com/arthalaalleiahcharitabletrust?igsi=MWFqNmM5bmdnYmJ5MQ==" target="_blank" rel="noreferrer">Instagram</a></li>
-            <li><a href="https://youtube.com/@arthalaalleiahcharitabletrust?si=l2EQ-jAB9PLAPtkQ" target="_blank" rel="noreferrer">YouTube channel</a></li>
+            <li><a href="https://www.instagram.com/arthalaalleiahcharitabletrust?igsi=MWFqNmM5bmdnYmJ5MQ%3D%3D" target="_blank" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@arthalaalleiahcharitabletrust" target="_blank" rel="noreferrer">YouTube channel</a></li>
           </ul>
         </div>
       </div>
