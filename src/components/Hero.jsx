@@ -1,6 +1,16 @@
 import React from 'react';
 
 export default function Hero({ onNavigate }){
+  // list of images for community activity strip
+  const activityImages = [
+    '/images/anna-prasadam.jpg',
+    '/images/food-donation.mp4',
+    '/images/blood-donation.jpg',
+    '/images/books-donation.jpg',
+    '/images/eye-checkup.jpg',
+    '/images/education.jpg'
+  ];
+
   return (
     <section className="hero" id="home">
       <div className="container hero-inner">
@@ -25,10 +35,26 @@ export default function Hero({ onNavigate }){
         </div>
 
         <div className="hero-media">
-          <img src="/images/hero.jpg" alt="Community care and charity support" />
-          <div className="hero-card">
-            <strong>7+ Years</strong>
-            <span>of trusted service</span>
+          <div className="hero-media-inner">
+            <img src="/images/hero.jpg" alt="Community care and charity support" />
+            <div className="hero-card">
+              <strong>7+ Years</strong>
+              <span>of trusted service</span>
+            </div>
+          </div>
+
+          <div className="community-scroll" aria-hidden="false">
+            <div className="scroll-track">
+              {activityImages.concat(activityImages).map((src, idx) => (
+                <div className="activity-item" key={idx}>
+                  {src.endsWith('.mp4') ? (
+                    <video src={src} muted loop playsInline />
+                  ) : (
+                    <img src={src} alt={`activity-${idx}`} />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

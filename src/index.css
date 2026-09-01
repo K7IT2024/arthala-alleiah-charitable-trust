@@ -783,4 +783,96 @@ button, input, textarea { font: inherit; }
   .donate-panel {
     padding: 1.5rem;
   }
+
+  /* focus-band tiles on mobile */
+  .focus-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .focus-tile { height: 120px; }
+  .focus-overlay { font-size: 0.9rem; }
 }
+
+/* Focus band styles */
+.focus-band {
+  background: linear-gradient(180deg, rgba(236,233,226,0.6), rgba(249,247,243,0.4));
+  padding: 2rem 0;
+}
+
+.focus-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--primary-dark);
+  font-size: 1.35rem;
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.focus-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  display: block;
+  height: 160px;
+  border: 1px solid rgba(14,47,40,0.06);
+}
+
+.focus-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.focus-tile:hover img { transform: scale(1.06); }
+
+.focus-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.35));
+  color: #fff;
+  font-weight: 800;
+  text-align: left;
+}
+
+/* soft gradient separator between hero and programs */
+.programs-section { background: linear-gradient(180deg, rgba(250,248,245,0.8), rgba(245,243,239,0.95)); padding-top: 2rem; padding-bottom: 2rem; }
+
+/* community activity scroll */
+.community-scroll {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -42px;
+  padding: 10px 0;
+  overflow: hidden;
+  height: 84px;
+}
+
+.scroll-track {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  animation: scroll-left 20s linear infinite;
+}
+
+.activity-item { flex: 0 0 auto; width: 140px; height: 64px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); background: #fff; }
+.activity-item img, .activity-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* premium refinements */
+.hero-media { position: relative; }
+.hero-media-inner { position: relative; overflow: hidden; border-radius: 28px; }
+.hero-media-inner img { display: block; }
+
+.hero { padding-bottom: 120px; }
+

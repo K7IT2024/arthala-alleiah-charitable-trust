@@ -52,7 +52,21 @@ export default function Home({ onNavigate }){
         </div>
       </section>
 
-      <section className="section alt" id="services">
+      <section className="focus-band">
+        <div className="container">
+          <h3 className="focus-title">Our Focus Areas</h3>
+          <div className="focus-grid">
+            {services.map(s => (
+              <a key={s.id} className="focus-tile" href={`?page=services#${s.id}`} onClick={(e)=>{ e.preventDefault(); if (onNavigate) onNavigate('services'); }}>
+                <img src={s.img} alt={s.title} />
+                <div className="focus-overlay"><strong>{s.title}</strong></div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section alt programs-section" id="services">
         <div className="container">
           <SectionTitle>Our Programs</SectionTitle>
           <div className="services-grid">
