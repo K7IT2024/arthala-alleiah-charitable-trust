@@ -11,7 +11,24 @@ export default function Home({ onNavigate }){
     <>
       <Hero onNavigate={onNavigate} />
 
-      <section className="section" id="impact">
+      <section className="section mission-band">
+        <div className="container mission-grid">
+          <div className="mission-card primary">
+            <span className="mission-kicker">Our Mission</span>
+            <h3>To uplift lives through dignity, care and lasting support.</h3>
+          </div>
+          <div className="mission-card">
+            <span className="mission-kicker">Vision</span>
+            <p>To create a compassionate, healthier, and more empowered society where every individual has access to support, opportunity, and hope.</p>
+          </div>
+          <div className="mission-card">
+            <span className="mission-kicker">Values</span>
+            <p>Transparent service, accountability, inclusivity, and community-led action rooted in compassion.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section impact-section" id="impact">
         <div className="container">
           <SectionTitle>Our Impact</SectionTitle>
           <div className="metrics-grid">

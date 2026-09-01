@@ -5,6 +5,7 @@ export default function Hero({ onNavigate }){
     <section className="hero" id="home">
       <div className="container hero-inner">
         <div className="hero-copy">
+          <div className="hero-badge">Helping communities thrive with dignity</div>
           <p className="eyebrow">Compassion in action</p>
           <h1>Serving the community with care, dignity and hope.</h1>
           <p>
