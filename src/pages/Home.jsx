@@ -7,23 +7,26 @@ import YouTubeEmbed from '../components/YouTubeEmbed';
 import media from '../data/media';
 
 export default function Home({ onNavigate }){
+  const focusAreas = [
+    { title: 'Health Care', image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80' },
+    { title: 'Education', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80' },
+    { title: 'Disaster Response & Relief', image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=80' },
+    { title: 'Community Support', image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80' }
+  ];
+
   return (
     <>
       <Hero onNavigate={onNavigate} />
 
-      <section className="section mission-band">
-        <div className="container mission-grid">
-          <div className="mission-card primary">
-            <span className="mission-kicker">Our Mission</span>
-            <h3>To uplift lives through dignity, care and lasting support.</h3>
-          </div>
-          <div className="mission-card">
-            <span className="mission-kicker">Vision</span>
-            <p>To create a compassionate, healthier, and more empowered society where every individual has access to support, opportunity, and hope.</p>
-          </div>
-          <div className="mission-card">
-            <span className="mission-kicker">Values</span>
-            <p>Transparent service, accountability, inclusivity, and community-led action rooted in compassion.</p>
+      <section className="focus-band">
+        <div className="container">
+          <div className="focus-grid">
+            {focusAreas.map(item => (
+              <div key={item.title} className="focus-tile">
+                <img src={item.image} alt={item.title} />
+                <div className="focus-overlay"><strong>{item.title}</strong></div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -32,36 +35,10 @@ export default function Home({ onNavigate }){
         <div className="container">
           <SectionTitle>Our Impact</SectionTitle>
           <div className="metrics-grid">
-            <div className="metric">
-              <strong>15K+</strong>
-              <span>Meals served</span>
-            </div>
-            <div className="metric">
-              <strong>1200+</strong>
-              <span>Students supported</span>
-            </div>
-            <div className="metric">
-              <strong>350+</strong>
-              <span>Blood donors mobilized</span>
-            </div>
-            <div className="metric">
-              <strong>40+</strong>
-              <span>Free health camps</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="focus-band">
-        <div className="container">
-          <h3 className="focus-title">Our Focus Areas</h3>
-          <div className="focus-grid">
-            {services.map(s => (
-              <a key={s.id} className="focus-tile" href={`?page=services#${s.id}`} onClick={(e)=>{ e.preventDefault(); if (onNavigate) onNavigate('services'); }}>
-                <img src={s.img} alt={s.title} />
-                <div className="focus-overlay"><strong>{s.title}</strong></div>
-              </a>
-            ))}
+            <div className="metric"><strong>15K+</strong><span>Meals served</span></div>
+            <div className="metric"><strong>1200+</strong><span>Students supported</span></div>
+            <div className="metric"><strong>350+</strong><span>Blood donors mobilized</span></div>
+            <div className="metric"><strong>40+</strong><span>Free health camps</span></div>
           </div>
         </div>
       </section>

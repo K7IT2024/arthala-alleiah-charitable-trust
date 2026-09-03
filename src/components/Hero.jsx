@@ -1,16 +1,6 @@
 import React from 'react';
 
 export default function Hero({ onNavigate }){
-  // list of images for community activity strip
-  const activityImages = [
-    '/images/anna-prasadam.jpg',
-    '/images/food-donation.mp4',
-    '/images/blood-donation.jpg',
-    '/images/books-donation.jpg',
-    '/images/eye-checkup.jpg',
-    '/images/education.jpg'
-  ];
-
   return (
     <section className="hero" id="home">
       <div className="container hero-inner">
@@ -35,26 +25,20 @@ export default function Hero({ onNavigate }){
         </div>
 
         <div className="hero-media">
-          <div className="hero-media-inner">
-            <img src="/images/hero.jpg" alt="Community care and charity support" />
-            <div className="hero-card">
-              <strong>7+ Years</strong>
-              <span>of trusted service</span>
+          <div className="hero-panel">
+            <img
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80"
+              alt="Community care and volunteering"
+              className="hero-panel-image"
+            />
+            <div className="dot-grid">
+              <span /><span /><span /><span /><span /><span /><span /><span /><span />
             </div>
+            <div className="panel-label">Community Care</div>
           </div>
-
-          <div className="community-scroll" aria-hidden="false">
-            <div className="scroll-track">
-              {activityImages.concat(activityImages).map((src, idx) => (
-                <div className="activity-item" key={idx}>
-                  {src.endsWith('.mp4') ? (
-                    <video src={src} muted loop playsInline />
-                  ) : (
-                    <img src={src} alt={`activity-${idx}`} />
-                  )}
-                </div>
-              ))}
-            </div>
+          <div className="hero-mini-card">
+            <strong>7+ Years</strong>
+            <span>of trusted service</span>
           </div>
         </div>
       </div>

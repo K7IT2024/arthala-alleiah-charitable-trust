@@ -18,6 +18,14 @@ const getPageFromUrl = () => {
   return validPages.includes(page) ? page : 'home';
 };
 
+const resetScrollPosition = () => {
+  if (typeof window === 'undefined') return;
+  window.history.scrollRestoration = 'manual';
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+};
+
 export default function App(){
   const [page, setPage] = useState(getPageFromUrl);
 
@@ -32,24 +40,25 @@ export default function App(){
       url.searchParams.set('page', target);
     }
     window.history.pushState({}, '', `${url.pathname}${url.search}`);
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    resetScrollPosition();
   };
 
   useEffect(() => {
     const onUrlChange = () => {
       const nextPage = getPageFromUrl();
       setPage(nextPage);
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      resetScrollPosition();
     };
 
+    window.history.scrollRestoration = 'manual';
     window.addEventListener('popstate', onUrlChange);
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    resetScrollPosition();
 
     return () => window.removeEventListener('popstate', onUrlChange);
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    resetScrollPosition();
   }, [page]);
 
   const renderPage = () => {
