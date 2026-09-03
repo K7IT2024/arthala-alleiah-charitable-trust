@@ -378,6 +378,8 @@ button, input, textarea { font: inherit; }
   .nav-wrap { min-height: 60px; }
   .main-nav { gap: 0.6rem; font-size: 0.85rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .about-top { flex-direction: column; align-items: flex-start; }
+  .founder-photo { width: 100%; max-width: 420px; height: 420px; }
   .services-grid { grid-template-columns: 1fr; }
 }
 
@@ -563,16 +565,33 @@ button, input, textarea { font: inherit; }
 
 .about-top {
   display: flex;
-  gap: 1.2rem;
+  gap: 1.6rem;
   align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.founder-intro {
+  flex: 1;
+}
+
+.founder-intro h4 {
+  margin: 0 0 0.75rem;
+  color: var(--primary-dark);
+  font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
 .founder-photo {
-  width: 180px;
-  height: 180px;
+  width: 320px;
+  height: 420px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 20px;
   border: 1px solid rgba(18,63,45,0.08);
+  box-shadow: 0 22px 40px rgba(14,47,40,0.12);
+}
+
+.about-story {
+  margin-top: 1.2rem;
 }
 
 .about-layout p {
