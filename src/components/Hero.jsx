@@ -27,14 +27,10 @@ export default function Hero({ onNavigate }){
         <div className="hero-media">
           <div className="hero-panel">
             <img
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80"
-              alt="Community care and volunteering"
+              src="/images/community-care-founder.jpg"
+              alt="Founder of Arthala Alleiah Charitable Trust"
               className="hero-panel-image"
             />
-            <div className="dot-grid">
-              <span /><span /><span /><span /><span /><span /><span /><span /><span />
-            </div>
-            <div className="panel-label">Community Care</div>
           </div>
           <div className="hero-mini-card">
             <strong>7+ Years</strong>
