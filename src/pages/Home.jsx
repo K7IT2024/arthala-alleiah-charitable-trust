@@ -20,6 +20,10 @@ export default function Home({ onNavigate }){
 
       <section className="focus-band">
         <div className="container">
+          <div className="section-heading focus-heading">
+            <p className="eyebrow" style={{ marginBottom: '0.5rem' }}>Our Missions</p>
+            <h3>Building a stronger, kinder community</h3>
+          </div>
           <div className="focus-grid">
             {focusAreas.map(item => (
               <div key={item.title} className="focus-tile">
