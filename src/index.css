@@ -465,9 +465,48 @@ button, input, textarea { font: inherit; }
   .nav-wrap { min-height: 60px; }
   .main-nav { gap: 0.6rem; font-size: 0.85rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  /* reduce hero height on small screens so it doesn't push or overlap other content */
+  .hero-panel { min-height: 240px; height: 300px; }
   .about-top { flex-direction: column; align-items: flex-start; }
-  .founder-photo { width: 100%; max-width: 420px; height: 420px; }
+  .founder-photo { width: 100%; max-width: 420px; height: 320px; object-position: center top; }
   .services-grid { grid-template-columns: 1fr; }
+  .volunteer-banner { flex-direction: column; align-items: flex-start; }
+  .volunteer-badges { justify-content: flex-start; }
+
+  /* ensure donate/volunteer CTAs are tappable above any overlapping layers */
+  .donate-panel, .donate-panel .button, .donate-panel-actions a, .donation-cta-row .button, .volunteer-banner, .volunteer-badges span {
+    position: relative;
+    z-index: 9999;
+  }
+
+  /* stack donate panel actions nicely on small screens */
+  .donate-panel-actions { flex-direction: column; align-items: stretch; gap: 0.6rem; }
+  .donate-panel-actions .button { width: 100%; }
+
+  /* compact donation banner and volunteer sections */
+  .donation-banner, .donation-cta-row, .volunteer-banner { padding: 1.2rem 1rem; border-radius: 18px; }
+  .donation-banner h2, .volunteer-banner h2 { font-size: 1.4rem; }
+
+  /* make volunteer form and list stack cleanly */
+  .volunteer-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+  .volunteer-story-card, .volunteer-form-card { padding: 1rem; }
+
+  /* make hero dots and overlays smaller */
+  .hero-dot { width: 8px; height: 8px; }
+  .hero-mini-card { left: 1rem; bottom: 1rem; }
+}
+
+/* fix potential overlapping decorative tracks or cards that may block clicks */
+.community-scroll, .hero-panel::after, .hero-slide-wrap { pointer-events: none; }
+
+/* ensure all primary CTA buttons are above decorative content by default */
+.button, .button.secondary { position: relative; z-index: 50; }
+
+/* small-screen tweaks for donor and volunteer cards */
+@media (max-width: 480px) {
+  .donation-banner h2, .volunteer-banner h2 { font-size: 1.25rem; }
+  .hero-panel { height: 260px; }
+  .founder-photo { height: 260px; }
 }
 
 @media (max-width: 640px) {
@@ -1155,6 +1194,168 @@ button, input, textarea { font: inherit; }
 .contact-form textarea {
   resize: vertical;
   min-height: 110px;
+}
+
+.volunteer-luxury {
+  background: linear-gradient(180deg, rgba(238,244,239,0.9), rgba(250,248,244,1));
+}
+
+.volunteer-shell {
+  max-width: 1220px;
+}
+
+.volunteer-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(27,94,70,0.96), rgba(14,47,40,0.96));
+  border: 1px solid rgba(201,154,64,0.24);
+  border-radius: 30px;
+  color: #fff;
+  padding: 2rem 2.2rem;
+  box-shadow: 0 24px 45px rgba(14,47,40,0.18);
+  margin-bottom: 2rem;
+}
+
+.volunteer-banner h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+.volunteer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.7rem;
+}
+
+.volunteer-badges span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 999px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.volunteer-grid {
+  align-items: start;
+}
+
+.volunteer-story-card,
+.volunteer-form-card {
+  background: #fff;
+  border: 1px solid rgba(14,47,40,0.08);
+  border-radius: 26px;
+  box-shadow: 0 18px 35px rgba(14,47,40,0.06);
+}
+
+.volunteer-story-card {
+  padding: 1.8rem 1.6rem;
+}
+
+.volunteer-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.volunteer-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.8rem;
+  color: var(--muted);
+}
+
+.volunteer-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.current-volunteers {
+  margin-top: 2rem;
+}
+
+.volunteer-list-grid {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.volunteer-item {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 0.9rem 0.8rem;
+  border: 1px solid rgba(14,47,40,0.08);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,1), rgba(247,243,236,0.95));
+}
+
+.volunteer-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(27,94,70,0.12), rgba(201,154,64,0.15));
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+.volunteer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.volunteer-info strong {
+  color: var(--primary-dark);
+  font-size: 1rem;
+}
+
+.volunteer-info small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.volunteer-form-card {
+  padding: 1.6rem;
+}
+
+.volunteer-form-card h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-dark);
+  font-size: 1.6rem;
+}
+
+.volunteer-select {
+  font-size: 16px;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  width: 100%;
+  background: #fff;
+  color: var(--text);
 }
 
 .site-footer {
