@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+const heroImages = [
+  { src: '/images/hero-1.jpg', alt: 'Community leader portrait' },
+  { src: '/images/hero-2.jpg', alt: 'Trust founders portrait' },
+  { src: '/images/community-care-founder.jpg', alt: 'Community support leader portrait' }
+];
 
 export default function Hero({ onNavigate }){
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4200);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToSlide = (nextIndex) => setActiveIndex((nextIndex + heroImages.length) % heroImages.length);
+
   return (
     <section className="hero" id="home">
       <div className="container hero-inner">
@@ -26,12 +44,30 @@ export default function Hero({ onNavigate }){
 
         <div className="hero-media">
           <div className="hero-panel">
-            <img
-              src="/images/community-care-founder.jpg"
-              alt="Founder of Arthala Alleiah Charitable Trust"
-              className="hero-panel-image"
-            />
+            <div className="hero-slide-wrap">
+              {heroImages.map((image, index) => (
+                <img
+                  key={image.src}
+                  src={image.src}
+                  alt={image.alt}
+                  className={index === activeIndex ? 'hero-slide active' : 'hero-slide'}
+                />
+              ))}
+            </div>
+
+            <div className="hero-slider-dots" aria-label="Slide indicators">
+              {heroImages.map((image, index) => (
+                <button
+                  key={image.src}
+                  type="button"
+                  className={index === activeIndex ? 'hero-dot active' : 'hero-dot'}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
+
           <div className="hero-mini-card">
             <strong>7+ Years</strong>
             <span>of trusted service</span>

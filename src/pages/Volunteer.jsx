@@ -1,7 +1,103 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 
+const API = 'http://localhost:4000/api/volunteers';
+
 export default function Volunteer(){
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [role, setRole] = useState('Community Outreach');
+  const [note, setNote] = useState('');
+  const [volunteers, setVolunteers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [formError, setFormError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const handleEmailChange = (val) => {
+    setEmail(val);
+    const v = val.trim();
+    if (!v) {
+      setEmailError('Email is required');
+      return;
+    }
+    if (!emailRegex.test(v)) {
+      setEmailError('Invalid email address');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  useEffect(() => {
+    fetchVolunteers();
+  }, []);
+
+  const fetchVolunteers = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(API);
+      if (!res.ok) throw new Error('Failed to fetch');
+      const data = await res.json();
+      setVolunteers(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const vEmail = email.trim();
+    setFormError('');
+    setSuccessMessage('');
+
+    if (!name.trim() || !vEmail) {
+      setFormError('Name and email are required.');
+      return;
+    }
+    if (emailError || !emailRegex.test(vEmail)) {
+      setFormError('Please provide a valid email address.');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          role: role.trim(),
+          note: note.trim()
+        })
+      });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to register');
+      }
+      const created = await res.json();
+      setVolunteers(prev => [created, ...prev]);
+      setName('');
+      setEmail('');
+      setPhone('');
+      setRole('Community Outreach');
+      setNote('');
+      setEmailError('');
+      setSuccessMessage('Thank you for registering as a volunteer!');
+    } catch (err) {
+      console.error(err);
+      setFormError(err.message || 'Registration failed. Try again later.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <section className="section" id="volunteer">
       <div className="container contact-grid">
@@ -16,15 +112,51 @@ export default function Volunteer(){
             <li>Healthcare camp coordination and outreach</li>
             <li>Fundraising and event logistics support</li>
           </ul>
+
+          <div style={{marginTop:20}}>
+            <SectionTitle>Current Volunteers</SectionTitle>
+            {loading ? (
+              <p>Loading volunteers...</p>
+            ) : volunteers.length === 0 ? (
+              <p>No volunteers registered yet.</p>
+            ) : (
+              <ul className="contact-list">
+                {volunteers.map(v => (
+                  <li key={v.id}>
+                    <strong>{v.name}</strong> — {v.email}
+                    {v.phone ? <> / {v.phone}</> : null}
+                    {v.role ? <div style={{fontSize:12, color:'#555'}}>Role: {v.role}</div> : null}
+                    {v.note ? <div style={{fontSize:12, color:'#555'}}>{v.note}</div> : null}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
 
         <div className="contact-card">
           <h4>Ready to serve?</h4>
-          <form className="contact-form">
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <textarea rows="4" placeholder="Tell us how you would like to contribute" />
-            <button type="submit" className="button">Join as volunteer</button>
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
+            <input type="email" placeholder="Email" value={email} onChange={e => handleEmailChange(e.target.value)} />
+            {emailError ? <div style={{color:'red', fontSize:12, marginTop:6}}>{emailError}</div> : null}
+            <input type="tel" placeholder="Phone Number" value={phone} onChange={e => setPhone(e.target.value)} />
+            <select
+              value={role}
+              onChange={e => setRole(e.target.value)}
+              style={{ fontSize: '16px', padding: '0.8rem 1rem', borderRadius: '8px', border: '1px solid #d9d9d9', width: '100%', background: '#fff' }}
+            >
+              <option>Community Outreach</option>
+              <option>Food Distribution</option>
+              <option>Education Support</option>
+              <option>Healthcare Support</option>
+              <option>Fundraising</option>
+              <option>Event Support</option>
+            </select>
+            <textarea rows="4" placeholder="Tell us how you would like to contribute" value={note} onChange={e => setNote(e.target.value)} />
+            {formError ? <div style={{color:'red', fontSize:12, marginTop:6}}>{formError}</div> : null}
+            {successMessage ? <div style={{color:'green', fontSize:12, marginTop:6}}>{successMessage}</div> : null}
+            <button type="submit" className="button" disabled={submitting || !!emailError}>{submitting ? 'Submitting...' : 'Join as volunteer'}</button>
           </form>
         </div>
       </div>

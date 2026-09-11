@@ -24,6 +24,13 @@ export default function Home({ onNavigate }){
             <p className="eyebrow" style={{ marginBottom: '0.5rem' }}>Our Missions</p>
             <h3>Building a stronger, kinder community</h3>
           </div>
+
+          <div className="home-trust-strip">
+            <span>Transparent giving</span>
+            <span>Community-first</span>
+            <span>Lasting impact</span>
+          </div>
+
           <div className="focus-grid">
             {focusAreas.map(item => (
               <div key={item.title} className="focus-tile">
@@ -88,7 +95,10 @@ export default function Home({ onNavigate }){
               Your contributions help us provide meals, scholarships, medical camps, and support for children and elders across our community.
             </p>
           </div>
-          <a href="?page=donate" className="button" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('donate'); }}>Become a donor</a>
+          <div className="donate-panel-actions">
+            <a href="?page=donate" className="button" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('donate'); }}>Become a donor</a>
+            <a href="?page=volunteer" className="button secondary" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('volunteer'); }}>Volunteer with us</a>
+          </div>
         </div>
       </section>
     </>

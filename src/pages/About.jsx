@@ -3,7 +3,7 @@ import SectionTitle from '../components/SectionTitle';
 
 export default function About(){
   return (
-    <section className="section" id="about">
+    <section className="section about-luxury" id="about">
       <div className="container about-layout">
         <div>
           <SectionTitle>About Arthala Alleiah Trust</SectionTitle>
@@ -11,6 +11,11 @@ export default function About(){
           <div className="about-top">
             <img src="/images/founder.jpg" alt="Founder Arthala Alleiah" className="founder-photo" />
             <div className="founder-intro">
+              <div className="about-badges">
+                <span>Service</span>
+                <span>Integrity</span>
+                <span>Compassion</span>
+              </div>
               <h4>Founder: Arthala Kesavelu</h4>
               <p>
                 Arthala Kesavelu established the trust in memory of his revered father, Arthala Alleiah, with a sincere belief that service to society is the most lasting form of gratitude. What began as a personal commitment to uplift the vulnerable has grown into a structured and trusted charitable initiative serving people across rural, urban, and underserved communities.
@@ -34,7 +39,7 @@ export default function About(){
           </div>
         </div>
 
-        <div className="info-panel">
+        <div className="info-panel about-values-panel">
           <h4>Our Values</h4>
           <ul className="feature-list">
             <li>Compassion for every life</li>
@@ -44,6 +49,10 @@ export default function About(){
             <li>Respect, dignity, and inclusion</li>
             <li>Sustainable support for lasting impact</li>
           </ul>
+          <div className="about-mission-box">
+            <strong>Our promise</strong>
+            <span>Serve with dignity, act with transparency, and leave every life stronger than we found it.</span>
+          </div>
         </div>
       </div>
     </section>
