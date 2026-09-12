@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 
-const API = 'http://localhost:4000/api/volunteers';
+const API = (() => {
+  if (typeof window === 'undefined') return 'http://localhost:4000/api/volunteers';
+  const host = window.location.hostname;
+  const baseHost = host === 'localhost' || host === '127.0.0.1' ? 'localhost' : host;
+  const protocol = window.location.protocol === 'https:' ? 'https' : 'http';
+  return `${protocol}://${baseHost}:4000/api/volunteers`;
+})();
 
 export default function Volunteer(){
   const [name, setName] = useState('');

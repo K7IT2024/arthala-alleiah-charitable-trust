@@ -450,6 +450,14 @@ button, input, textarea { font: inherit; }
   text-align: center;
 }
 
+@media (max-width: 1000px) {
+  .donation-grid { grid-template-columns: 1fr; gap: 18px; }
+  .donation-banner { grid-template-columns: 1fr; }
+  .donation-trust-panel { justify-content: flex-start; }
+  .donation-cta-row { margin-bottom: 1.5rem; }
+  .donation-stats-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+}
+
 @media (max-width: 900px) {
   .video-grid .video-item iframe { height: 340px; }
   .donation-banner { grid-template-columns: 1fr; }
@@ -457,6 +465,27 @@ button, input, textarea { font: inherit; }
   .donation-grid { grid-template-columns: 1fr; }
   .donation-cta-row { margin-bottom: 1.5rem; }
   .donation-stats-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+}
+
+/* Make primary action buttons reliably tappable and above decorative overlays */
+.button, .button.secondary {
+  pointer-events: auto;
+  z-index: 10000;
+}
+
+/* Ensure hero and decorative overlays cannot block clicks */
+.hero, .hero-panel, .hero-slide-wrap, .hero-panel::after, .community-scroll {
+  z-index: 1;
+}
+
+/* small screen donation CTA layout */
+@media (max-width: 560px) {
+  .donation-cta-row { flex-direction: column; gap: 0.6rem; }
+  .donation-cta-row .button { width: 100%; }
+  .donation-banner { padding: 1rem; }
+  .donation-banner h2 { font-size: 1.25rem; }
+  .donation-summary-card, .donation-info-panel { padding: 14px; }
+  .donation-stats-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
