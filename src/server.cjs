@@ -5,9 +5,11 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const distPath = path.resolve(__dirname, '..', 'dist');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(distPath));
 
 const dbPath = path.join(__dirname, 'volunteers.db');
 const db = new sqlite3.Database(dbPath);
@@ -42,7 +44,6 @@ app.post('/api/volunteers', (req, res) => {
   const { name, email, phone, role, note } = req.body;
   if (!name || !email) return res.status(400).json({ error: 'Name and email are required' });
 
-  // Basic server-side email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ error: 'Invalid email address' });
@@ -58,6 +59,11 @@ app.post('/api/volunteers', (req, res) => {
   });
 });
 
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) return next();
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Volunteer API running on http://0.0.0.0:${PORT}`);
+  console.log(`Volunteer API and web app running on http://0.0.0.0:${PORT}`);
 });
