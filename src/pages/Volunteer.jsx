@@ -3,6 +3,19 @@ import SectionTitle from '../components/SectionTitle';
 
 const API = import.meta.env.VITE_API_URL || '/api/volunteers';
 
+const readJsonResponse = async (response) => {
+  const text = await response.text();
+  if (!text) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    throw new Error('Server returned an invalid response.');
+  }
+};
+
 export default function Volunteer(){
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -40,10 +53,11 @@ export default function Volunteer(){
     try {
       const res = await fetch(API);
       if (!res.ok) throw new Error('Failed to fetch');
-      const data = await res.json();
-      setVolunteers(data);
+      const data = await readJsonResponse(res);
+      setVolunteers(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error(err);
+      setVolunteers([]);
     } finally {
       setLoading(false);
     }
@@ -77,11 +91,13 @@ export default function Volunteer(){
           note: note.trim()
         })
       });
+
+      const payload = await readJsonResponse(res);
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || 'Failed to register');
+        throw new Error(payload?.error || 'Failed to register');
       }
-      const created = await res.json();
+
+      const created = payload;
       setVolunteers(prev => [created, ...prev]);
       setName('');
       setEmail('');
