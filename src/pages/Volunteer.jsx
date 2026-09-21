@@ -55,7 +55,8 @@ export default function Volunteer(){
       const res = await fetch(API);
       if (!res.ok) throw new Error('Failed to fetch');
       const data = await readJsonResponse(res);
-      setVolunteers(Array.isArray(data) ? data : []);
+      const rows = Array.isArray(data) ? data : data?.volunteers;
+      setVolunteers(Array.isArray(rows) ? rows : []);
     } catch (err) {
       console.error(err);
       setVolunteers([]);
@@ -98,7 +99,7 @@ export default function Volunteer(){
         throw new Error(payload?.error || 'Failed to register');
       }
 
-      const created = payload;
+      const created = payload?.volunteer || payload;
       setVolunteers(prev => [created, ...prev]);
       setName('');
       setEmail('');
@@ -148,17 +149,21 @@ export default function Volunteer(){
         </div>
 
         <div className="contact-grid volunteer-grid">
-          <div className="volunteer-story-card">
+          <div className={showVolunteerList ? 'volunteer-story-card list-view' : 'volunteer-story-card'}>
             <SectionTitle>Volunteer With Us</SectionTitle>
-            <p>
-              We are always looking for kind-hearted volunteers who can help with food drives, school mentoring, events, fundraising, and community outreach. Your time and effort can directly change the lives of families and children who need support.
-            </p>
-            <ul className="contact-list volunteer-list">
-              <li>Food packing and community meal service</li>
-              <li>School support and mentoring for children</li>
-              <li>Healthcare camp coordination and outreach</li>
-              <li>Fundraising and event logistics support</li>
-            </ul>
+            {!showVolunteerList ? (
+              <>
+                <p>
+                  We are always looking for kind-hearted volunteers who can help with food drives, school mentoring, events, fundraising, and community outreach. Your time and effort can directly change the lives of families and children who need support.
+                </p>
+                <ul className="contact-list volunteer-list">
+                  <li>Food packing and community meal service</li>
+                  <li>School support and mentoring for children</li>
+                  <li>Healthcare camp coordination and outreach</li>
+                  <li>Fundraising and event logistics support</li>
+                </ul>
+              </>
+            ) : null}
 
             {showVolunteerList ? (
               <div className="current-volunteers">
