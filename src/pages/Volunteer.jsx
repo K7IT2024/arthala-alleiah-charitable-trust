@@ -150,7 +150,8 @@ export default function Volunteer(){
                 <p>No volunteers registered yet.</p>
               ) : (
                 <ul className="volunteer-list-grid">
-                  {volunteers.map(v => (
+                  {volunteers.map(v =>
+
                     <li key={v.id} className="volunteer-item">
                       <div className="volunteer-avatar">{v.name.charAt(0).toUpperCase()}</div>
                       <div className="volunteer-info">
@@ -161,7 +162,7 @@ export default function Volunteer(){
                         {v.note ? <small>{v.note}</small> : null}
                       </div>
                     </li>
-                  ))}
+                  )}
                 </ul>
               )}
             </div>
