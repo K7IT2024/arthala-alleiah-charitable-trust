@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 
 const donationStats = [
@@ -9,6 +9,63 @@ const donationStats = [
 ];
 
 export default function Donate(){
+  const [amount, setAmount] = useState('500');
+  const [donor, setDonor] = useState({ name: '', email: '', phone: '' });
+  const [paymentError, setPaymentError] = useState('');
+  const [paymentMessage, setPaymentMessage] = useState('');
+  const [paying, setPaying] = useState(false);
+
+  const handlePayment = async (event) => {
+    event.preventDefault();
+    setPaymentError('');
+    setPaymentMessage('');
+    setPaying(true);
+
+    try {
+      const orderResponse = await fetch('/api/payments/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: Number(amount),
+          donor,
+        }),
+      });
+      const order = await orderResponse.json();
+      if (!orderResponse.ok) throw new Error(order.error || 'Unable to start payment.');
+
+      if (!window.Razorpay) {
+        throw new Error('Payment gateway is still loading. Please try again.');
+      }
+
+      const razorpay = new window.Razorpay({
+        key: order.keyId,
+        amount: order.amount,
+        currency: order.currency,
+        name: 'Arthala Alleiah Charitable Trust',
+        description: 'Charitable donation',
+        order_id: order.orderId,
+        prefill: donor,
+        theme: { color: '#1b5e46' },
+        handler: async (response) => {
+          const verifyResponse = await fetch('/api/payments/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...response, donor, amount: Number(amount) }),
+          });
+          const receipt = await verifyResponse.json();
+          if (!verifyResponse.ok) throw new Error(receipt.error || 'Payment verification failed.');
+          setPaymentMessage(`Payment successful. Receipt ${receipt.receiptNumber} is ready.`);
+          window.location.href = receipt.receiptUrl;
+        },
+        modal: { ondismiss: () => setPaying(false) },
+      });
+      razorpay.open();
+    } catch (error) {
+      setPaymentError(error.message);
+      setPaying(false);
+    }
+  };
+
   return (
     <section className="section alt donation-section" id="donate">
       <div className="container donation-shell">
@@ -65,6 +122,35 @@ export default function Donate(){
           </div>
 
           <div className="info-panel donation-info-panel" id="donation-payment">
+            <h4>Make a secure donation</h4>
+            <p className="donation-note">Pay by UPI, netbanking, debit card, or credit card through Razorpay.</p>
+            <form className="donation-payment-form" onSubmit={handlePayment}>
+              <label>
+                Donation amount (INR)
+                <input type="number" min="1" step="1" value={amount} onChange={(event) => setAmount(event.target.value)} required />
+              </label>
+              <label>
+                Full name
+                <input value={donor.name} onChange={(event) => setDonor({ ...donor, name: event.target.value })} required />
+              </label>
+              <label>
+                Email
+                <input type="email" value={donor.email} onChange={(event) => setDonor({ ...donor, email: event.target.value })} required />
+              </label>
+              <label>
+                Phone
+                <input type="tel" value={donor.phone} onChange={(event) => setDonor({ ...donor, phone: event.target.value })} required />
+              </label>
+              <div className="payment-methods" aria-label="Available payment methods">
+                <span>UPI</span><span>Netbanking</span><span>Credit card</span><span>Debit card</span>
+              </div>
+              {paymentError ? <p className="payment-message error">{paymentError}</p> : null}
+              {paymentMessage ? <p className="payment-message success">{paymentMessage}</p> : null}
+              <button type="submit" className="button" disabled={paying}>
+                {paying ? 'Opening payment...' : 'Pay securely'}
+              </button>
+            </form>
+
             <h4>Donation Channels</h4>
             <ul className="feature-list">
               <li>One-time contribution</li>
