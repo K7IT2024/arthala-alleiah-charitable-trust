@@ -28,6 +28,7 @@ export default function Volunteer(){
   const [emailError, setEmailError] = useState('');
   const [formError, setFormError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [showVolunteerList, setShowVolunteerList] = useState(false);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const handleEmailChange = (val) => {
@@ -129,6 +130,23 @@ export default function Volunteer(){
           </div>
         </div>
 
+        <div className="volunteer-toggle-row" role="tablist" aria-label="Volunteer views">
+          <button
+            type="button"
+            className={showVolunteerList ? 'button volunteer-tab active' : 'button volunteer-tab'}
+            onClick={() => setShowVolunteerList(true)}
+          >
+            List of Volunteers
+          </button>
+          <button
+            type="button"
+            className={!showVolunteerList ? 'button volunteer-tab active' : 'button volunteer-tab'}
+            onClick={() => setShowVolunteerList(false)}
+          >
+            Join as Volunteer
+          </button>
+        </div>
+
         <div className="contact-grid volunteer-grid">
           <div className="volunteer-story-card">
             <SectionTitle>Volunteer With Us</SectionTitle>
@@ -142,30 +160,31 @@ export default function Volunteer(){
               <li>Fundraising and event logistics support</li>
             </ul>
 
-            <div className="current-volunteers">
-              <SectionTitle>Current Volunteers</SectionTitle>
-              {loading ? (
-                <p>Loading volunteers...</p>
-              ) : volunteers.length === 0 ? (
-                <p>No volunteers registered yet.</p>
-              ) : (
-                <ul className="volunteer-list-grid">
-                  {volunteers.map(v =>
-
-                    <li key={v.id} className="volunteer-item">
-                      <div className="volunteer-avatar">{v.name.charAt(0).toUpperCase()}</div>
-                      <div className="volunteer-info">
-                        <strong>{v.name}</strong>
-                        <span>{v.email}</span>
-                        {v.phone ? <span>{v.phone}</span> : null}
-                        {v.role ? <small>Role: {v.role}</small> : null}
-                        {v.note ? <small>{v.note}</small> : null}
-                      </div>
-                    </li>
-                  )}
-                </ul>
-              )}
-            </div>
+            {showVolunteerList ? (
+              <div className="current-volunteers">
+                <SectionTitle>Current Volunteers</SectionTitle>
+                {loading ? (
+                  <p>Loading volunteers...</p>
+                ) : volunteers.length === 0 ? (
+                  <p>No volunteers registered yet.</p>
+                ) : (
+                  <ul className="volunteer-list-grid">
+                    {volunteers.map(v =>
+                      <li key={v.id} className="volunteer-item">
+                        <div className="volunteer-avatar">{v.name.charAt(0).toUpperCase()}</div>
+                        <div className="volunteer-info">
+                          <strong>{v.name}</strong>
+                          <span>{v.email}</span>
+                          {v.phone ? <span>{v.phone}</span> : null}
+                          {v.role ? <small>Role: {v.role}</small> : null}
+                          {v.note ? <small>{v.note}</small> : null}
+                        </div>
+                      </li>
+                    )}
+                  </ul>
+                )}
+              </div>
+            ) : null}
           </div>
 
           <div className="contact-card volunteer-form-card">
