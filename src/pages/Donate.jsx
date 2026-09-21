@@ -46,6 +46,11 @@ export default function Donate(){
         order_id: order.orderId,
         prefill: donor,
         theme: { color: '#1b5e46' },
+        method: {
+          upi: true,
+          netbanking: true,
+          card: true,
+        },
         handler: async (response) => {
           const verifyResponse = await fetch('/api/payments/verify', {
             method: 'POST',
