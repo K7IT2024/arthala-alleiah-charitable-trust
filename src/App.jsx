@@ -28,6 +28,8 @@ const resetScrollPosition = () => {
 
 export default function App(){
   const [page, setPage] = useState(getPageFromUrl);
+  const [installPrompt, setInstallPrompt] = useState(null);
+  const [showInstallHelp, setShowInstallHelp] = useState(false);
 
   const navigateToPage = (nextPage) => {
     const target = validPages.includes(nextPage) ? nextPage : 'home';
@@ -61,6 +63,30 @@ export default function App(){
     resetScrollPosition();
   }, [page]);
 
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (event) => {
+      event.preventDefault();
+      setInstallPrompt(event);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+  }, []);
+
+  const installApp = async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      await installPrompt.userChoice;
+      setInstallPrompt(null);
+      return;
+    }
+    setShowInstallHelp(true);
+  };
+
   const renderPage = () => {
     switch (page) {
       case 'about': return <About />;
@@ -77,6 +103,19 @@ export default function App(){
 
   return (
     <div className="app-root">
+      <button type="button" className="install-app-button" onClick={installApp}>
+        Add to Home Screen
+      </button>
+      {showInstallHelp ? (
+        <div className="install-help" role="dialog" aria-label="Add this website to your home screen">
+          <strong>Install AACT</strong>
+          <p>
+            Android: use your browser menu and choose <b>Install app</b> or <b>Add to Home screen</b>.
+            iPhone/iPad: tap <b>Share</b>, then choose <b>Add to Home Screen</b>.
+          </p>
+          <button type="button" onClick={() => setShowInstallHelp(false)}>Close</button>
+        </div>
+      ) : null}
       <Navbar currentPage={page} onNavigate={navigateToPage} />
       <main>{renderPage()}</main>
       <Footer onNavigate={navigateToPage} />
