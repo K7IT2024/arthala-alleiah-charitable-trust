@@ -104,13 +104,13 @@ export default function App(){
   return (
     <div className="app-root">
       <button type="button" className="install-app-button" onClick={installApp}>
-        Add to Home Screen
+        Create Shortcut
       </button>
       {showInstallHelp ? (
         <div className="install-help" role="dialog" aria-label="Add this website to your home screen">
           <strong>Install AACT</strong>
           <p>
-            Android: use your browser menu and choose <b>Install app</b> or <b>Add to Home screen</b>.
+            Chrome: open the three-dot menu, choose <b>Cast, save, and share</b>, then select <b>Create shortcut</b>.
             iPhone/iPad: tap <b>Share</b>, then choose <b>Add to Home Screen</b>.
           </p>
           <button type="button" onClick={() => setShowInstallHelp(false)}>Close</button>
